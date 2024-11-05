@@ -1,5 +1,6 @@
 // src/pages/Dashboard.js
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Importar Link
 import { getPosts, createPost, deletePost } from '../services/api';
 
 function Dashboard() {
@@ -42,33 +43,50 @@ function Dashboard() {
   };
 
   return (
-    <div>
-      <h2>Dashboard</h2>
-      <form onSubmit={handleCreatePost}>
-        <input
-          type="text"
-          placeholder="Título"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          placeholder="Contenido"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <button type="submit">Crear Publicación</button>
+    <div className="container mt-5">
+      <h2 className="text-center mb-4">Dashboard</h2>
+
+      <form onSubmit={handleCreatePost} className="mb-4">
+        <div className="mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Título"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <textarea
+            className="form-control"
+            placeholder="Contenido"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          ></textarea>
+        </div>
+        <button type="submit" className="btn btn-primary">Crear Publicación</button>
       </form>
 
       <h3>Publicaciones</h3>
-      <ul>
+      <div className="list-group mb-4">
         {posts.map(post => (
-          <li key={post.id}>
+          <div key={post.id} className="list-group-item">
             <h4>{post.title}</h4>
             <p>{post.content}</p>
-            <button onClick={() => handleDeletePost(post.id)}>Eliminar</button>
-          </li>
+            <button 
+              onClick={() => handleDeletePost(post.id)} 
+              className="btn btn-danger"
+            >
+              Eliminar
+            </button>
+          </div>
         ))}
-      </ul>
+      </div>
+
+      {/* Enlace para volver a la página principal */}
+      <div className="text-center">
+        <Link to="/" className="btn btn-link">Volver a la página principal</Link>
+      </div>
     </div>
   );
 }

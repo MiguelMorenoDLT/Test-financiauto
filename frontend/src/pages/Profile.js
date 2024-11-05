@@ -22,22 +22,28 @@ function Profile() {
   };
 
   return (
-    <div>
-      <h2>Perfil</h2>
-      <form onSubmit={handleUpdateProfile}>
-        <input
-          type="text"
-          placeholder="Nombre de usuario"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button type="submit">Actualizar Perfil</button>
+    <div className="container mt-5">
+      <h2 className="text-center mb-4">Perfil</h2>
+      <form onSubmit={handleUpdateProfile} className="mx-auto" style={{ maxWidth: '400px' }}>
+        <div className="mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Nombre de usuario"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <input
+            type="email"
+            className="form-control"
+            placeholder="Correo electrónico"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-success w-100">Actualizar Perfil</button>
       </form>
     </div>
   );
