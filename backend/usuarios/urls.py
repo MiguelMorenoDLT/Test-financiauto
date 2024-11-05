@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
 from users.views import RegisterUserView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+# Vista simple para la raíz
+def home(request):
+    return HttpResponse("Bienvenido a la API de Usuarios y Publicaciones")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +30,5 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/posts/', include('posts.urls')),
+    path('', home),  # Ruta para la raíz "/"
 ]
